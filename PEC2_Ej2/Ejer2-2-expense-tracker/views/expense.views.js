@@ -51,7 +51,11 @@ class ExpenseView {
 
   //posem a cero l'import del concepte
   _resetAmount() {
-    this.amount=0;
+    this.amount.value = "";
+  }
+
+  updateBalance(total){
+    this.balance.innerText = `$${total}`;
   }
 
   createElement(tag, className) {
@@ -73,13 +77,14 @@ class ExpenseView {
     while (this.list.firstChild) {
       this.list.removeChild(this.list.firstChild);
     }
-
+    var total;
+    total = 0;
     // Show default message
       // Create nodes
       expenses.forEach(expense => {
          // Get sign
         const sign = expense.amount < 0 ? '-' : '+';
-
+        total = total + expense.amount*1;
         const item = this.createElement('li');
 
         // Add class based on value
@@ -92,11 +97,12 @@ class ExpenseView {
             )}</span> <button class="delete-btn">x</button>
             </span> <button class="update-btn">..</button>
             `;
-
-        list.appendChild(item);
+            
+        this.list.appendChild(item);
               
       });
-    
+      
+      this.updateBalance(total);
 
     // Debugging
     console.log(expenses);
