@@ -102,7 +102,7 @@ class ExpenseView {
               
       });
       
-      this.updateBalance(total);
+      this.updateBalance(total.toFixed(2));
 
     // Debugging
     console.log(expenses);
