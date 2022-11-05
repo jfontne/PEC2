@@ -8,6 +8,8 @@ function entryCalculator(entrants) {
 
   let res;
 
+  
+
   if(typeof(entrants) === 'undefined') {
     res = 0;
   } else if(Object.keys(entrants).length === 0){
@@ -52,11 +54,11 @@ function animalCount(species) {
   let res;
   var numAnimals = {};
 
-  Object.entries(animals).forEach(([key, value]) => {
+    var aCount = [];
+
+    aCount = [animals.name] = 0;
   
-    let num = value.residents.length;
-    numAnimals[value.name] = num;
-  });
+  
 
 
   if(typeof(species) === 'undefined') {
@@ -79,10 +81,6 @@ function animalMap(options) {
   var zonesEspeciesNomsAnimals= {};
   var especiesNomsAnimals = [];
   var nomsAnimalsZona = {};
-  var nomsAnimalsFamella = {};
-  var arrayAnimalsFamella = [];
-  var zonesEspeciesNomsAnimalsFamella = {};
-  var especiesNomsAnimalsFamella = [];
 
   //Guardem les zones, sense repeticions
     Object.entries(animals).forEach(([key, value]) => {
@@ -92,52 +90,31 @@ function animalMap(options) {
         zones.push(value.location);
     }
   });
+  
   //Comencem el bucle per anar guardant noms per zones
   zones.forEach(zona => {
     
     Object.entries(animals).forEach(([key, value]) => {
       if(value.location === zona){
         especiesZona.push(value.name);
-        if(typeof(options)!=='undefined' && options['includeNames']) {
-          nomsAnimalsZona[value.name] = value.residents.map((e, index) => e = value.residents[index].name);
-        }
-        if(typeof(options)!=='undefined' && typeof(options['sex']) !== 'undefined'){ 
-          arrayAnimalsFamella = value.residents.filter(e => e.sex === options['sex']);
-          nomsAnimalsFamella[value.name] = arrayAnimalsFamella.map((e, index) => e = arrayAnimalsFamella[index].name);
-        }
-          especiesNomsAnimals.push(nomsAnimalsZona);
-          especiesNomsAnimalsFamella.push(nomsAnimalsFamella);
-          nomsAnimalsZona = {};
-          nomsAnimalsFamella = {};
+        nomsAnimalsZona[value.name] = value.residents.map((e, index) => e = value.residents[index].name);
+        especiesNomsAnimals.push(nomsAnimalsZona);
+        nomsAnimalsZona = {};
         }
     });
     zonesEspeciesNomsAnimals[zona]= especiesNomsAnimals;
-    //console.log('noms' + zonesEspeciesNomsAnimals);
-
-    zonesEspeciesNomsAnimalsFamella[zona] = especiesNomsAnimalsFamella;
-    //console.log('sexe' + zonesEspeciesNomsAnimalsFamella);
-
     llistaAnimals[zona] = especiesZona;
     especiesZona = [];
     especiesNomsAnimals = [];
-    especiesNomsAnimalsFamella = [];
-    nomsAnimalsFamella ={};
   });
-
-  console.log(zonesEspeciesNomsAnimalsFamella);
 
   if(typeof(options) === 'undefined') {
     res = llistaAnimals;
   } else if(Object.keys(options).length === 0){
     res = llistaAnimals;
   } else if(options['includeNames']) {
-        if(typeof(options['sex'])==='undefined'){  
-          res = zonesEspeciesNomsAnimals;}
-        else{
-          res = zonesEspeciesNomsAnimalsFamella;
-        }       
-        
-  }  
+      res = zonesEspeciesNomsAnimals; 
+    }
   return res;
 }
 
@@ -366,25 +343,35 @@ return res;
 
 function employeeCoverage(idOrName) {
   
+  var persona = {};
   var responsables = {};
   var responsable = [];
-  var arrayAnimals = [];
- element = idOrName; 
+  var nomsAnimals = [];
+  
+ console.log(animals.filter(e =>e.name === 'tigers'));
  Object.entries(employees).forEach(([key, value]) => {
   if(typeof(idOrName) === 'undefined' || value.id === element || value.firstName === element || value.lastName === element){
-        arrayAnimals = animals.filter(e => {
-          let res = false;
-          value.responsibleFor.forEach(responsable => {
-           if(responsable === e.id){ 
-              res = true; 
-             }
-        });
-        return res;
-      });
-      responsables[value.firstName + ' ' + value.lastName] = arrayAnimals.map((e,index)=>e=arrayAnimals[index].name);
+      nomsAnimals = arrayAnimals.find(e => e.id === value.responsibleFor[0]); 
     }
   });
-  return responsables;
+
+
+  /*    element = idOrName;
+      Object.entries(employees).forEach(([key, value]) => {
+        if(typeof(idOrName) === 'undefined' || value.id === element || value.firstName === element || value.lastName === element){
+          Object.entries(animals).forEach(([key, valueA]) => {
+              arrayAnimals = valueA.name.search()
+
+              }  
+
+          }); 
+            responsables[value.firstName + ' ' + value.lastName] = arrayAnimals;
+          }
+        arrayAnimals = [];
+      });
+
+   
+   return responsables;*/
   }
 
 module.exports = {
