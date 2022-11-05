@@ -8,7 +8,7 @@ function entryCalculator(entrants) {
 
   let res;
 
-  console.log(entrants);
+  
 
   if(typeof(entrants) === 'undefined') {
     res = 0;
@@ -168,7 +168,7 @@ function animalPopularity(rating) {
 
 function animalsByIds(ids) {
 
-  console.log(typeof(ids));
+  
   if(typeof(ids) === 'undefined') {
     res = [];  
   } else if (typeof(ids) === 'object'){
@@ -245,7 +245,7 @@ return res;
 }
 
 function employeesByIds(ids) {
-  console.log(typeof(ids));
+  
   if(typeof(ids) === 'undefined') {
     res = [];  
   } else if (typeof(ids) === 'object'){
@@ -315,12 +315,67 @@ return res;
 }
 
 function managersForEmployee(idOrName) {
+  
+  if(typeof(idOrName) === 'undefined') {
+    res = [];  
+  }  else if(typeof(idOrName)==='string') {
+
+        var persona = {};
+        var arrayManagers = [];
+    
+          element = idOrName;        
+          Object.entries(employees).forEach(([key, value]) => {
+            if(value.id === element || value.firstName === element || value.lastName === element){
+              persona.id=value.id;
+              persona.firstName=value.firstName;
+              persona.lastName=value.lastName;
+              
+              Object.entries(employees).forEach(([key, valueM]) => {
+                  value.managers.forEach(manager => {
+                    if(valueM.id === manager){
+                      arrayManagers.push(valueM.firstName + ' ' + valueM.lastName);
+                    }
+                  });
+              }); 
+              
+              persona.managers = arrayManagers;
+              persona.responsibleFor=value.responsibleFor;
+            }
+          });
+          res = persona;
+    
+        }
+  
+return res; 
+
   // your code here
 }
 
 function employeeCoverage(idOrName) {
-  // your code here
-}
+  
+  var persona = {};
+  var arrayAnimals = [];
+  var responsables = {};
+
+      element = idOrName;
+      Object.entries(employees).forEach(([key, value]) => {
+        if(typeof(idOrName) === 'undefined' || value.id === element || value.firstName === element || value.lastName === element){
+          Object.entries(animals).forEach(([key, valueA]) => {
+              value.responsibleFor.forEach(responsable => {
+                if(responsable === valueA.id){
+                  arrayAnimals.push(valueA.name);
+                }
+                    
+              });
+            }); 
+            responsables[value.firstName + ' ' + value.lastName] = arrayAnimals;
+          }
+        arrayAnimals = [];
+      });
+
+   
+   return responsables;
+  }
 
 module.exports = {
   entryCalculator,
