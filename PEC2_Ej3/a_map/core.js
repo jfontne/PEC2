@@ -43,3 +43,4 @@ module.exports = {
   onlyVowels,
   doubleMatrix
 };
+
