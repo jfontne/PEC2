@@ -112,10 +112,9 @@ function animalMap(options) {
         }
     });
     zonesEspeciesNomsAnimals[zona]= especiesNomsAnimals;
-    //console.log('noms' + zonesEspeciesNomsAnimals);
-
+   
     zonesEspeciesNomsAnimalsFamella[zona] = especiesNomsAnimalsFamella;
-    //console.log('sexe' + zonesEspeciesNomsAnimalsFamella);
+    
 
     llistaAnimals[zona] = especiesZona;
     especiesZona = [];
@@ -124,7 +123,7 @@ function animalMap(options) {
     nomsAnimalsFamella ={};
   });
 
-  console.log(zonesEspeciesNomsAnimalsFamella);
+  
 
   if(typeof(options) === 'undefined') {
     res = llistaAnimals;
@@ -364,6 +363,20 @@ return res;
   // your code here
 }
 
+
+
+/* 
+ responsablesNoms = employees.map(x => x.firstName + ' ' + x.lastName);
+ arrayAnimals = employees.map(e => animals.filter(x => e.responsibleFor.some(y => y === x.id)));
+ arraySpeciesAnimals = arrayAnimals.map((x) => x.map(x=>x.name)); 
+ res = responsablesNoms.map((x,index,arr)=>{
+
+  return {[x]: arraySpeciesAnimals[index]};  
+});
+//console.log(res);
+//return res;
+*/
+
 function employeeCoverage(idOrName) {
   
   var responsables = {};
@@ -386,7 +399,7 @@ function employeeCoverage(idOrName) {
   });
   return responsables;
   }
-
+    
 module.exports = {
   entryCalculator,
   schedule,

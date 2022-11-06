@@ -1,6 +1,6 @@
 const findOne = (list, { key, value }, { onSuccess, onError }) => {
 
-  //setTimeout es una funció asíncrona que espera uns milisegons una resposta
+  //setTimeout es una funció asíncrona que espera uns milisegons a executar una funció
   //el codi seqüencial seguirà executant-se mentres espera una resposta de la funció list.find
   //setTimeout(function(){}, milisegons)
   setTimeout(() => {

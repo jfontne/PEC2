@@ -1,54 +1,21 @@
+
+//En aquest cas no es sequencial pq dins del setTimeOut te definida la funció async i s'executara en paral·lel a
+//l'execució seqüencial
+
+
 function getUser(list, { key, value }) {return list.find(element => element[key] === value);}  
 
-async function findOne(users, { key, value }) {
-  
+function findOne(users, { key, value }) {
+  setTimeout(async()=>{ 
   try {
     var quote = await getUser(users,{key,value});
     onSuccess(quote);
   } catch (error) {
     onError({msg: 'ERROR: Element Not Found'});
   }
+},2000);
 }
 
-
-
-
-
-
-
-/*const resposta = findOne((list, { key, value })
-
-async function consulta(list, { key, value }){
-  let v;
-  const element = list.find(element => element[key] === value);
-  try{
-    v = await Promise(element);
-  }catch(e){
-    onError({msg: 'ERROR'});
-
-  }
-} 
-*/
-/*alert(findOne);
-
-
-  const element = list.find(element => element[key] === value);
-  const consulta = await new Promise((element) => onSuccess(element))}
-*/
-
-/*async function resolt(list, {key, value}) {
-  const consulta  = await new Promise((resolve, reject) => {
-    const element = list.find(element => element[key] === value);
-    setTimeout(() =>{ 
-      resolve((element) => onSuccess({ value })) , reject((element) => onError({ msg: 'ERROR: Element Not Found' }))
-  },2000);
-});
-}*/
-  //setTimeout es una funció asíncrona que espera uns milisegons una resposta
-  //el codi seqüencial seguirà executant-se mentres espera una resposta de la funció list.find
-  //setTimeout(function(){}, milisegons)
-  
-    //console.log(list);
 
 //funció resposta afirmativa
 const onSuccess = ({ name }) => console.log(`user: ${name}`);
