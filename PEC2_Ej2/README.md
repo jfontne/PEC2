@@ -19,3 +19,16 @@ Otro apartado importante para una buena gestión del código son las clases, en 
 ## Respuesta al apartado a
 
 [Respuesta al apartado a](PEC2_Solucion_Ejercicio_2a.md)
+
+## Expenses
+
+Hemos convertido un fichero js en un model MVC
+Aquí algunos resultados del ejercicio
+
+### Boton editar
+
+![Botón editar](img/botonEditar.png)
+
+### Formulario editar
+
+![Formulario editar](img/formEditar.png)
