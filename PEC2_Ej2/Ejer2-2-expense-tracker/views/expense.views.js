@@ -14,7 +14,11 @@ class ExpenseView {
     this.form = this.getElement('#form');
     this.text = this.getElement('#text');
     this.amount = this.getElement('#amount');
-    
+    this.editWindow = this.getElement('#updateHidden');
+    this.editText = this.getElement('#uText');
+    this.editAmount = this.getElement('#uAmount');
+    this.editId = this.getElement('#uId');
+    this.editButton = this.getElement('#uSubmit');
     
     //this._initLocalListeners();
   }
@@ -58,6 +62,16 @@ class ExpenseView {
     this.balance.innerText = `$${total}`;
   }
 
+  updateMoneyPlus(moneyP){
+    this.money_plus.innerText = `$${moneyP}`;
+  }
+
+  updateMoneyMinus(moneyM){
+    this.money_minus.innerText = `$${moneyM}`;
+  }
+
+
+
   createElement(tag, className) {
     const element = document.createElement(tag);
 
@@ -77,14 +91,22 @@ class ExpenseView {
     while (this.list.firstChild) {
       this.list.removeChild(this.list.firstChild);
     }
-    var total;
-    total = 0;
+    var total = 0;
+    var minus = 0;
+    var plus = 0;
+
     // Show default message
       // Create nodes
       expenses.forEach(expense => {
          // Get sign
         const sign = expense.amount < 0 ? '-' : '+';
         total = total + expense.amount*1;
+        if(expense.amount > 0){
+          plus = plus + expense.amount * 1;
+        }else {
+          minus = minus + expense.amount * 1;
+        }
+
         const item = this.createElement('li');
 
         // Add class based on value
@@ -103,9 +125,10 @@ class ExpenseView {
       });
       
       this.updateBalance(total.toFixed(2));
-
+      this.updateMoneyMinus(minus.toFixed(2));
+      this.updateMoneyPlus(plus.toFixed(2));
     // Debugging
-    console.log(expenses);
+    //console.log(expenses);
   }
 
  /* _initLocalListeners() {
@@ -140,16 +163,25 @@ class ExpenseView {
     });
   }
 
-  bindEditExpense(expenses,handler) {
+  bindEditExpense(expenses) {
     this.list.addEventListener("click", event => {
       if (event.target.className === "update-btn") {
         const activeText = expenses.filter(({id}) => id === event.target.parentElement.id);
         console.log(activeText);
         console.log(expenses);
-        const text=prompt("concepte",activeText[0]["text"]);
-        const amount=prompt("import",activeText[0]["amount"]);
-        handler(activeText[0]["id"], text, amount);
+        this.editWindow.classList.replace('updateHidden', 'update');
+        this.editId.value = activeText[0]["id"];
+        this.editText.value = activeText[0]["text"];
+        this.editAmount.value = activeText[0]["amount"];
+        
       }
+    });
+  }
+  bindeditUpdateWindow(handler){
+    this.editButton.addEventListener('click', event => {
+      this.editButton.preventDefault;
+      //const activeText = expenses.filter(({id}) => id === event.target.parentElement.id);
+      handler(this.editId.value, this.editText.value, this.editAmount.value);
     });
   }
 }

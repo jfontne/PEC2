@@ -14,7 +14,8 @@ class ExpenseController {
     // Explicit this binding
     this.service.bindExpenseListChanged(this.onExpenseListChanged);
     this.view.bindAddExpense(this.handleAddExpense);
-    this.view.bindEditExpense(this.service.expenses,this.handleEditExpense);
+    this.view.bindEditExpense(this.service.expenses);
+    this.view.bindeditUpdateWindow(this.handleEditExpense);
     this.view.bindDeleteExpense(this.handleDeleteExpense);
 
     // Display initial todos

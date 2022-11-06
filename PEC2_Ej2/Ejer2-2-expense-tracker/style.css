@@ -170,3 +170,48 @@ input[type='number'] {
   opacity: 1;
 }
 
+.updateHidden{
+  visibility: hidden;
+}
+
+.update{
+  display: flex;
+  padding: 20px;
+  background-color: #eee;
+  border-style: solid;
+  border-color: #ccc;
+  opacity: 1;
+  flex-direction: column;
+  position: fixed;
+  top:10vh;
+  left: auto;
+  right: auto;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+.update label{
+  font-size: 15pt;
+  color: #888;
+}
+
+#uSubmit {
+  cursor: pointer;
+  background-color: #9c88ff;
+  box-shadow: var(--box-shadow);
+  color: #fff;
+  border: 0;
+  display: block;
+  font-size: 16px;
+  margin: 10px 0 30px;
+  padding: 10px;
+  width: 100%;
+}
+
+#uTitol{
+  text-align: center;
+}
+
+
+
