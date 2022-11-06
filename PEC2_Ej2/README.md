@@ -18,4 +18,4 @@ Otro apartado importante para una buena gestión del código son las clases, en 
 
 ## Respuesta al apartado a
 
-[Respuesta al apartado a](PEC2_Ej2/PEC2_Solucion_Ejercicio_2a.md)
+[Respuesta al apartado a](PEC2_Solucion_Ejercicio_2a.md)
