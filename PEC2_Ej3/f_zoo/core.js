@@ -397,7 +397,9 @@ function employeeCoverage(idOrName) {
       responsables[value.firstName + ' ' + value.lastName] = arrayAnimals.map((e,index)=>e=arrayAnimals[index].name);
     }
   });
+  console.log(responsables);
   return responsables;
+  
   }
     
 module.exports = {
